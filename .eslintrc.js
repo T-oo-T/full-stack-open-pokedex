@@ -1,4 +1,5 @@
 module.exports = {
+  // https://eslint.org/docs/v8.x/use/configure/language-options#using-configuration-files
   'env': {
     'browser': true,
     'node': true,
