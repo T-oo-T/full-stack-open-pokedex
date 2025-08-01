@@ -28,6 +28,19 @@ jobs:
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+      - name: Send successful deployment notification
+        if: ${{ success() }}
+        # commit for v2.2.1
+        uses: rjstone/discord-webhook-notify@c2597273488aeda841dd1e891321952b51f7996f
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          # text: Below this normal-looking message is an embed!
+          severity: info # only to make sure the embed is added
+          title: A new version of Pokedex deployed
+          # description: "This is a ***SuPeR custom*** description. I hope it looks good."
+          # details: not needed because we overrode default description.
+          # footer: This embed was brought to you by the letter R and the number 4.
   tag_release:
     if: ${{ !contains(join(github.event.commits.*.message), '#skip') }}
     runs-on: ubuntu-latest
