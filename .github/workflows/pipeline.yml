@@ -35,15 +35,15 @@ jobs:
           DISCORD_USERNAME: GitHub
         uses: Ilshidur/action-discord@d2594079a10f1d6739ee50a2471f0ca57418b554
         with:
-        args: |
-            {
-              "embeds": [
-                {
-                  "title": "A new version of Pokedex succesfully deployed!",
-                  "color": 65280
-                }
-              ]
-            }
+          args: |
+              {
+                "embeds": [
+                  {
+                    "title": "A new version of Pokedex succesfully deployed!",
+                    "color": 65280
+                  }
+                ]
+              }
       - name: Send failure notification
         if: ${{ !success() }}
         env:
