@@ -1,5 +1,8 @@
 name: Testing stuff
 
+env:
+  SKIP_DEPLOY: ${{ contains(join(github.event.commits.*.message), '#skip') }}
+
 on:
   push:
     branches:
@@ -30,4 +33,8 @@ jobs:
         env:
           COMMIT_MESSAGES_CONTAINS_SKIP: ${{ contains(join(github.event.commits.*.message), '#skip') }}
         run: echo "$COMMIT_MESSAGES_CONTAINS_SKIP"
-      
+      - if: ${{ env.SKIP_DEPLOY == 'true' }}
+        run: '#skip found in commit message: skipping deploy'
+      - if: ${{ env.SKIP_DEPLOY == 'false' }}
+        run: 'deploying normally'
+          
