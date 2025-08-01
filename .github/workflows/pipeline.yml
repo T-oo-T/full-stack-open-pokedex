@@ -1,8 +1,5 @@
 name: Deployment pipeline
 
-env:
-  SKIP_DEPLOY: ${{ contains(join(github.event.commits.*.message), '#skip') }}
-
 on:
   push:
     branches:
