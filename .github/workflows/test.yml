@@ -34,7 +34,7 @@ jobs:
           COMMIT_MESSAGES_CONTAINS_SKIP: ${{ contains(join(github.event.commits.*.message), '#skip') }}
         run: echo "$COMMIT_MESSAGES_CONTAINS_SKIP"
       - if: ${{ env.SKIP_DEPLOY == 'true' }}
-        run: '#skip found in commit message: skipping deploy'
+        run: echo "#skip found in commit message. skipping deployment."
       - if: ${{ env.SKIP_DEPLOY == 'false' }}
-        run: 'deploying normally'
+        run: echo "deploying normally"
           
