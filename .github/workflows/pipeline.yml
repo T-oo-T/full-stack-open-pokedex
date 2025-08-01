@@ -30,17 +30,12 @@ jobs:
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
       - name: Send successful deployment notification
         if: ${{ success() }}
-        # commit for v2.2.1
-        uses: rjstone/discord-webhook-notify@c2597273488aeda841dd1e891321952b51f7996f
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: GitHub
+        uses: Ilshidur/action-discord@d2594079a10f1d6739ee50a2471f0ca57418b554
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          username: GitHub
-          # text: Below this normal-looking message is an embed!
-          severity: info # only to make sure the embed is added
-          title: A new version of Pokedex deployed
-          # description: "This is a ***SuPeR custom*** description. I hope it looks good."
-          # details: not needed because we overrode default description.
-          # footer: This embed was brought to you by the letter R and the number 4.
+          args: 'A new version of Pokedex deployed'
   tag_release:
     if: ${{ !contains(join(github.event.commits.*.message), '#skip') }}
     runs-on: ubuntu-latest
