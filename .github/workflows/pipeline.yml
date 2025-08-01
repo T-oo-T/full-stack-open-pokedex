@@ -41,10 +41,8 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: GitHub
-          DISCORD_EMBEDS: [{"title": "Build failed", "description": "🔴 Build failed. Commit: `${{ github.sha }}`", "color": 16711680}]
+          DISCORD_EMBEDS: [{"title": "Build failed", "description": "Build failed. Commit: `${{ github.sha }}`", "color": 16711680}]
         uses: Ilshidur/action-discord@d2594079a10f1d6739ee50a2471f0ca57418b554
-        with:
-          args: 'Build failed. Commit: ${{ github.sha }}'
   tag_release:
     if: ${{ !contains(join(github.event.commits.*.message), '#skip') }}
     runs-on: ubuntu-latest
