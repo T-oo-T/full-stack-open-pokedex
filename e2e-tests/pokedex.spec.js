@@ -10,7 +10,7 @@ describe('Pokedex', () => {
   test('pokemon page can be navigated to', async ({ page }) => {
     await page.goto('')
     await expect(page.getByText('ivysaur')).toBeVisible()
-    await page.getByText('ivysaur').click()
+    await page.getByText('ivysaurz').click()
     await expect(page.getByText('chlorophyll')).toBeVisible()
   })
 })
