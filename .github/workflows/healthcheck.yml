@@ -10,12 +10,11 @@ on:
 
 jobs:
   health_check:
-  runs-on:
-    ubuntu-latest
-  steps:
-    - name: Health check
-      uses: jtalk/url-health-check-action@b716ccb6645355dd9fcce8002ce460e5474f7f00
-      with:
-        url: https://full-stack-open-pokedex-eztk.onrender.com/health
-        max-attempts: 3
-        retry-delay: 5s
+    runs-on: ubuntu-latest
+    steps:
+      - name: Health check
+        uses: jtalk/url-health-check-action@b716ccb6645355dd9fcce8002ce460e5474f7f00
+        with:
+          url: https://full-stack-open-pokedex-eztk.onrender.com/health
+          max-attempts: 3
+          retry-delay: 5s
