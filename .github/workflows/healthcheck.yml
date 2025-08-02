@@ -7,6 +7,9 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize]
+  schedule:
+    # "At every fifth minute"
+    - cron: "*/5 * * * *"
 
 jobs:
   health_check:
