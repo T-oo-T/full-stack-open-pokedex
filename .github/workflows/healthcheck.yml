@@ -18,3 +18,4 @@ jobs:
           url: https://full-stack-open-pokedex-eztk.onrender.com/health
           max-attempts: 3
           retry-delay: 5s
+          retry-all: true
