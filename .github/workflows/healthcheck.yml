@@ -1,6 +1,8 @@
 name: Healthcheck
 
 on:
+  # To allow running the workflow manually.
+  workflow_dispatch:
   schedule:
     # "At 00:00", so once a day.
     - cron: "0 0 * * *"
